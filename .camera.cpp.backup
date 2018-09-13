@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+#include "framework.h"
+#include "matrix.h"
+#include "vector.h"
+#include "math.h"
+#include "camera.h"
+
+static	matrix	g_matCam;
+static	matrix	g_mProj;
+
+//-----------------------------------------------------------------------------
+matrix	camera_getCamera()
+//-----------------------------------------------------------------------------
+{
+	return	g_matCam;
+	
+}	
+//-----------------------------------------------------------------------------
+matrix	camera_getProjection()
+//-----------------------------------------------------------------------------
+{
+	return	g_mProj;
+}
+//-----------------------------------------------------------------------------
+int	camera_update()
+//-----------------------------------------------------------------------------
+{
+	static float r = 0;
+
+	g_matCam = mroty(r) * mtrans(0.0, -5.0, -11.0)  * mrotx(5*M_PI/180.0f);
+
+//	r += 1*M_PI/180.0f/4;
+	if ( r >= M_PI*2.0f ) r -= M_PI*2.0f;
+
+	return	true;
+}
+

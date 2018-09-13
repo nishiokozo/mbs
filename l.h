@@ -1,0 +1,16 @@
+/*
+#include "vector.h"
+#include "matrix.h"
+#include "math.h"
+#include "line.h"
+#include "font.h"
+#include "key.h"
+*/
+#include "framework.h"
+#include "vector.h"
+#include "matrix.h"
+#include "math.h"
+#include "font.h"
+#include "key.h"
+#include "line.h"
+#include "mouse.h"
