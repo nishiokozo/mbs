@@ -1,6 +1,7 @@
 #define APIENTRY
 #include <stdio.h>
 #include <GL/gl.h>
+#define _USE_MATH_DEFINES
 #include "l.h"
 
 #include "camera.h"

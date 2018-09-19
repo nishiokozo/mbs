@@ -1,38 +1,57 @@
-.SURFIXES:	.cpp
+#.SURFIXES:	.cpp
 
-TAR=main
-SRCS=main.cpp \
-	framework.cpp \
-	vector.cpp \
-	matrix.cpp \
-	font.cpp \
-	enemy.cpp \
-	floor.cpp \
-	light.cpp \
-	camera.cpp \
-	key.cpp \
-	fighter.cpp \
-	mouse.cpp \
-	line.cpp \
-	core.cpp \
-	missile.cpp \
-	ctrl.cpp \
-	bomb.cpp \
-	test.cpp 
+TAR=main.exe
+
+OBJS=\
+	obj/main.o \
+	obj/framework.o \
+	obj/vector.o \
+	obj/matrix.o \
+	obj/font.o \
+	obj/enemy.o \
+	obj/floor.o \
+	obj/light.o \
+	obj/camera.o \
+	obj/key.o \
+	obj/fighter.o \
+	obj/mouse.o \
+	obj/line.o \
+	obj/core.o \
+	obj/missile.o \
+	obj/ctrl.o \
+	obj/bomb.o \
+	obj/test.o \
 
 #LIBS=-lglut32 -lopengl32 -lglu32  -static-libgcc -static-libstdc++ 
 LIBS= -lopengl32 -lglu32  -static-libgcc -static-libstdc++ glut32.lib
 
+FLGS = \
+	-c \
+	-m64 \
+	-std=c++14 \
+	-Wall \
+	-Wno-unknown-pragmas \
+	-Wno-unused-function \
+	-Wno-unused-variable \
 
-$(TAR).exe	:	$(SRCS:.cpp=.o)
-	g++ -m64 -o$(TAR) $^ $(LIBS)
+INCS = \
+	-Ic:/msys64 \
 
-.cpp.o:
-#	clang++ -c -Wall -O3  $< -Ic:/msys64 -Wno-unused-variable -Wno-c++11-compat-deprecated-writable-strings -Wno-macro-redefined
-	g++  -m64 -c -Wall -O3  $< -Ic:/msys64 -Wno-unknown-pragmas -Wno-unused-function
-#	g++  -m64 -c -Wall -O3  $< -Ic:/msys64 
-	
+
+#CC	= clang++
+CC	= g++
+
+
+$(TAR)	:	obj $(OBJS) $(SHDR)
+	$(CC) -o $(TAR) $(OBJS) $(LIBS)
+
+obj/%.o:%.cpp
+	$(CC)  $(FLGS) $(INCS) $< -o $@
+
+obj:
+	mkdir obj
+
 clean:
-	rm *.o *.obj $(TAR) $(TAR).exe -f
-
+	rm -f *.exe
+	rm -rf obj
 

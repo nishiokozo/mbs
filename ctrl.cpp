@@ -3,6 +3,7 @@
 #include <GL/gl.h>
 #include <GL/glut.h>
 
+#define _USE_MATH_DEFINES
 #include "l.h"
 #include "camera.h"
 #include "ctrl.h"
